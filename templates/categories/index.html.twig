@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categories{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1 class="text-center">Liste des categories</h1>
+    <a class="btn btn-outline-primary" href={{path('ajouter_categories')}}>Ajouter</a>
+
+    <table class="table mt-3">
+        <thead>
+            <th>#ID</th>
+            <th>Nom</th>
+            <th>Actions</th>
+        </thead>
+        <body>
+            {% for category in categories %}
+                <tr>
+                    <td>#{{category.id}}</td>
+                    <td>{{category.nomCategorie}}</td>
+                    <td>
+                        <a class="btn btn-danger" href={{path('supprimer_categories', {id: category.id })}}>Delete</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3" class="text-center">Aucun Données</td>
+                </tr>
+                
+            {% endfor %}
+        </body>
+    </table>
+</div>
+{% endblock %}
